@@ -1,0 +1,29 @@
+[project]
+name = "ml-env"
+version = "0.1.0"
+description = "Enterprise ML env (Py3.13, CUDA 13, VS Code Dev Containers, GAR)"
+requires-python = ">=3.13"
+dependencies = [
+  "numpy",
+  "scipy",
+  "pandas",
+  "scikit-learn",
+  "matplotlib",
+  "seaborn",
+  "plotly",
+  "jupyterlab",
+  "ipykernel",
+  "tqdm",
+  "pyyaml",
+  "rich",
+  "ruff",
+  "pytest",
+  "pytest-cov",
+  "requests"
+]
+
+[dependency-groups]
+dev = ["pytest", "pytest-cov", "ruff", "pre-commit"]
+
+[tool.ruff]
+line-length = 100

@@ -1,0 +1,10 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "GPU sanity",
+        "type": "shell",
+        "command": "python - <<'PY'\nimport torch, torch.backends.cudnn as cudnn\nprint('torch:', torch.__version__)\nprint('CUDA available:', torch.cuda.is_available())\nprint('device:', torch.cuda.get_device_name(0))\nprint('runtime:', torch.version.cuda)\nprint('cudnn:', cudnn.is_available())\nx = torch.randn(4096,4096, device='cuda'); y = x @ x\nprint('matmul ok:', y.isfinite().all().item())\nPY"
+      }
+    ]
+  }
