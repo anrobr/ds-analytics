@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.venv/
+venv/
+ENV/
+env/
+pip-wheel-metadata/
+__pypackages__/
+.pytest_cache/
+.mypy_cache/
+
+# VS Code
+.vscode/
+*.code-workspace
+.vscode-test/
