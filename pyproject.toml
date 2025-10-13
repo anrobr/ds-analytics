@@ -31,3 +31,7 @@ line-length = 100
 [tool.coverage.run]
 data_file = "/tmp/.coverage"
 parallel = false
+
+[tool.ruff]
+line-length = 100
+cache-dir = "/tmp/.ruff_cache"
