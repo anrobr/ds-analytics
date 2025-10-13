@@ -6,7 +6,7 @@ pre-commit:
 test:
 	@# Use coverage if pytest supports --cov (pytest-cov installed), otherwise run without coverage
 	@if pytest --help 2>/dev/null | grep -q -- --cov; then \
-    	pytest -v --maxfail=1 --disable-warnings --cov=src tests/; \
+    	pytest -v --maxfail=1 --disable-warnings --cov=tests/; \
 	else \
 		echo "pytest-cov not available; running tests without coverage"; \
 	pytest -v --maxfail=1 --disable-warnings tests/; \

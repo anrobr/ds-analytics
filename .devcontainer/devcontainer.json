@@ -31,5 +31,6 @@
     }
   },
   "remoteUser": "vscode",
-  "postCreateCommand": "uv sync --active --frozen || uv sync --active; python -m pip install -U ipykernel; python -m ipykernel install --user --name ds-analytics --display-name 'Python (ds-analytics venv)'; pre-commit install; make gpu-check || true"
+  "postCreateCommand": "uv sync --active --frozen || uv sync --active; python -m pip install -U ipykernel; python -m ipykernel install --user --name ds-analytics --display-name 'Python (ds-analytics venv)'; pre-commit install; make gpu-check || true",
+  "postStartCommand": "sudo chown -R vscode:vscode /workspaces"
 }

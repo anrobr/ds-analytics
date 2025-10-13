@@ -27,3 +27,7 @@ dev = ["pytest", "pytest-cov", "ruff", "pre-commit"]
 
 [tool.ruff]
 line-length = 100
+
+[tool.coverage.run]
+data_file = "/tmp/.coverage"
+parallel = false
