@@ -27,11 +27,8 @@ dev = ["pytest", "pytest-cov", "ruff", "pre-commit"]
 
 [tool.ruff]
 line-length = 100
+cache-dir = "/tmp/.ruff_cache"
 
 [tool.coverage.run]
 data_file = "/tmp/.coverage"
 parallel = false
-
-[tool.ruff]
-line-length = 100
-cache-dir = "/tmp/.ruff_cache"

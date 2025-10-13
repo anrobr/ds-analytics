@@ -12,7 +12,9 @@
   "mounts": ["source=ml-env-cache,target=/opt/.cache,type=volume"],
   "containerEnv": {
     "PYTHONUNBUFFERED": "1",
-    "PIP_DISABLE_PIP_VERSION_CHECK": "1"
+    "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+    "COVERAGE_FILE": "/tmp/.coverage",
+    "RUFF_CACHE_DIR": "/tmp/.ruff_cache"
   },
   "customizations": {
     "vscode": {
