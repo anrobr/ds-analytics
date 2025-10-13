@@ -55,15 +55,24 @@ RUN python -m ensurepip --upgrade && python -m pip install --upgrade pip
 RUN python -m pip install --pre --index-url https://download.pytorch.org/whl/nightly/cu130 \
     torch torchvision torchaudio
 
-# ---- RAPIDS 25.12 (CUDA 13, Python 3.13) ----
-# Use NVIDIA's PyPI (CUDA-variant wheels); devel image provides NVRTC.
-RUN python -m pip install --extra-index-url=https://pypi.nvidia.com \
+# ---- RAPIDS (CUDA 13, try 25.12 - early release, fallback to 25.10 if not yet available) ----
+RUN set -eux; \
+if ! python -m pip install --extra-index-url=https://pypi.nvidia.com \
     cudf-cu13==25.12.* \
     dask-cudf-cu13==25.12.* \
     cuml-cu13==25.12.* \
     cugraph-cu13==25.12.* \
     rmm-cu13==25.12.* \
-    cupy-cuda13x
+    cupy-cuda13x; then \
+    echo "RAPIDS 25.12.* not yet available on NVIDIA PyPI — falling back to 25.10.*"; \
+    python -m pip install --extra-index-url=https://pypi.nvidia.com \
+    cudf-cu13==25.10.* \
+    dask-cudf-cu13==25.10.* \
+    cuml-cu13==25.10.* \
+    cugraph-cu13==25.10.* \
+    rmm-cu13==25.10.* \
+    cupy-cuda13x; \
+fi
 
 # ---- pre-commit ----
 RUN python -m pip install pre-commit
