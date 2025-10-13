@@ -1,11 +1,11 @@
 {
-  "name": "ml-env (Py3.13, CUDA 13)",
+  "name": "ml-env (Py3.13, CUDA 13, RAPIDS 25.12)",
   "build": {
     "dockerfile": "Dockerfile",
     "context": "..",
     "args": {
       "PYTHON_VERSION": "3.13",
-      "CUDA_TAG": "13.0.1-cudnn-runtime-ubuntu22.04"
+      "CUDA_TAG": "13.0.1-devel-ubuntu24.04"
     }
   },
   "runArgs": ["--gpus", "all"],
@@ -24,13 +24,12 @@
         "github.vscode-github-actions"
       ],
       "settings": {
-        "python.defaultInterpreterPath": "/workspaces/.venv/bin/python",
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
         "python.analysis.typeCheckingMode": "basic",
-        "jupyter.notebookFileRoot": "${workspaceFolder}",
-        "jupyter.kernelPickerType": "OnlyIncludeInterpreters"
+        "jupyter.notebookFileRoot": "${workspaceFolder}"
       }
     }
   },
   "remoteUser": "vscode",
-  "postCreateCommand": "uv sync --frozen || uv sync; python -m pip install -U ipykernel; python -m ipykernel install --user --name ds-analytics --display-name 'Python (ds-analytics venv)'; pre-commit install; make gpu-check || true"
+  "postCreateCommand": "uv sync --active --frozen || uv sync --active; python -m pip install -U ipykernel; python -m ipykernel install --user --name ds-analytics --display-name 'Python (ds-analytics venv)'; pre-commit install; make gpu-check || true"
 }

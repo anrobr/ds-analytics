@@ -1,7 +1,7 @@
 [project]
 name = "ml-env"
 version = "0.1.0"
-description = "Enterprise ML env (Py3.13, CUDA 13, VS Code Dev Containers, GAR)"
+description = "Enterprise ML env (Py3.13, CUDA 13, RAPIDS 25.12, VS Code Dev Containers, GAR)"
 requires-python = ">=3.13"
 dependencies = [
   "numpy",
