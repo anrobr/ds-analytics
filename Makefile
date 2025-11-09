@@ -1,3 +1,5 @@
+.PHONY: pre-commit tests gpu-check lint
+
 pre-commit:
 	@command -v pre-commit >/dev/null 2>&1 && pre-commit run --all-files || \
 	( command -v python >/dev/null 2>&1 && python -m pre_commit run --all-files ) || \
