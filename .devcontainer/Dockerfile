@@ -5,7 +5,7 @@ FROM nvidia/cuda:${CUDA_TAG}
 # ---- System deps + Python 3.13 (deadsnakes) ----
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     git curl gnupg2 software-properties-common build-essential pkg-config cmake \
-    libssl-dev libffi-dev \
+    libssl-dev libffi-dev sudo \
  && add-apt-repository -y ppa:deadsnakes/ppa \
  && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     python3.13 python3.13-dev python3.13-venv \

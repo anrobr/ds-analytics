@@ -9,6 +9,7 @@
     }
   },
   "runArgs": ["--gpus", "all"],
+  "updateRemoteUserUID": true,
   "mounts": ["source=ml-env-cache,target=/opt/.cache,type=volume"],
   "containerEnv": {
     "PYTHONUNBUFFERED": "1",
@@ -33,6 +34,6 @@
     }
   },
   "remoteUser": "vscode",
-  "postCreateCommand": "uv sync --active --frozen || uv sync --active; python -m pip install -U ipykernel; python -m ipykernel install --user --name ds-analytics --display-name 'Python (ds-analytics venv)'; pre-commit install; make gpu-check || true",
-  "postStartCommand": "sudo chown -R vscode:vscode /workspaces"
+  "postStartCommand": "bash /workspaces/ds-and-ml/.devcontainer/fix-permissions.sh",
+  "postCreateCommand": "bash /workspaces/ds-and-ml/.devcontainer/fix-permissions.sh && (uv sync --active --frozen || uv sync --active); python -m pip install -U ipykernel; python -m ipykernel install --user --name ds-analytics --display-name 'Python (ds-analytics venv)'; pre-commit install; make gpu-check || true"
 }
