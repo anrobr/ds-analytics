@@ -3,7 +3,7 @@ pre-commit:
 	( command -v python >/dev/null 2>&1 && python -m pre_commit run --all-files ) || \
 	( echo "pre-commit is not installed. Install with: pip install pre-commit" >&2; exit 1 )
 
-test:
+tests:
 	@# Use coverage if pytest supports --cov (pytest-cov installed), otherwise run without coverage
 	@if pytest --help 2>/dev/null | grep -q -- --cov; then \
     	pytest -v --maxfail=1 --disable-warnings --cov=tests/; \
