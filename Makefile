@@ -14,3 +14,7 @@ test:
 
 gpu-check:
 	python -c "import torch; print('CUDA:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'n/a')"
+
+lint:
+	@echo "Linting with ruff..."
+	@ruff check .

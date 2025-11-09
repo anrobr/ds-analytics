@@ -15,3 +15,6 @@ __pypackages__/
 .vscode/
 *.code-workspace
 .vscode-test/
+
+# Secrets detection
+.secrets.baseline

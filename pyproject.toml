@@ -19,7 +19,14 @@ dependencies = [
   "ruff",
   "pytest",
   "pytest-cov",
-  "requests"
+  "requests",
+  "xgboost",
+  "optuna",
+  "transformers",
+  "streamlit",
+  "onnx",
+  "onnxruntime",
+  "pyspark"
 ]
 
 [dependency-groups]
@@ -29,6 +36,14 @@ dev = ["pytest", "pytest-cov", "ruff", "pre-commit"]
 line-length = 100
 cache-dir = "/tmp/.ruff_cache"
 
+[tool.ruff.lint]
+ignore = ["F401"]  # Ignore unused imports
+per-file-ignores = {"notebooks/**" = ["F401"]}  # Allow unused imports in notebooks
+
 [tool.coverage.run]
 data_file = "/tmp/.coverage"
 parallel = false
+
+[tool.bandit]
+exclude_dirs = ["tests", ".git", "__pycache__", ".venv"]
+skips = ["B101", "B601"]  # Skip assert checks and shell usage warnings for data science code

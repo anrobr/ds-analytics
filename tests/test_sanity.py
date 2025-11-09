@@ -7,6 +7,7 @@ def test_numpy_ok():
 
     assert np.array([1, 2, 3]).sum() == 6
 
+
 def test_cuda_available():
     """Check whether a CUDA-capable GPU is available.
 
@@ -22,7 +23,9 @@ def test_cuda_available():
     def has_nvidia_smi():
         if shutil.which("nvidia-smi"):
             try:
-                res = subprocess.run(["nvidia-smi", "-L"], capture_output=True, text=True, timeout=5)
+                res = subprocess.run(
+                    ["nvidia-smi", "-L"], capture_output=True, text=True, timeout=5
+                )
                 return res.returncode == 0 and res.stdout.strip() != ""
             except Exception:
                 return False
@@ -45,6 +48,7 @@ def test_cuda_available():
         assert True
     else:
         pytest.skip("No low-level evidence of a CUDA-capable NVIDIA GPU found")
+
 
 def test_torch_gpu_compute():
     """Run a small GPU tensor operation to confirm GPU compute works.
