@@ -1,0 +1,17 @@
+# Output directory for build artifacts
+output/
+wheels/
+
+# Build artifacts
+*.whl
+*.egg-info/
+dist/
+build/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Test outputs
+.pytest_cache/

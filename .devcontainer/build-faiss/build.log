@@ -1,0 +1,99 @@
+🚀 FAISS-GPU Build Helper
+
+📦 Building container image...
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 3.08kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/nvidia/cuda:13.0.1-devel-ubuntu24.04
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [ 1/13] FROM docker.io/nvidia/cuda:13.0.1-devel-ubuntu24.04
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 102B done
+#5 DONE 0.0s
+
+#6 [11/13] RUN git clone --recursive https://github.com/rapidsai/cuvs.git /workspace/cuvs ||     echo "cuVS already available via pip"
+#6 CACHED
+
+#7 [ 4/13] RUN wget -qO- "https://cmake.org/files/v3.28/cmake-3.28.3-linux-x86_64.tar.gz" |     tar --strip-components=1 -xz -C /usr/local
+#7 CACHED
+
+#8 [ 7/13] RUN python -m pip install --upgrade pip setuptools wheel &&     python -m pip install numpy scipy packaging
+#8 CACHED
+
+#9 [10/13] RUN git clone https://github.com/facebookresearch/faiss.git /workspace/faiss
+#9 CACHED
+
+#10 [12/13] COPY --chown=builder:builder build.sh build-cuvs.sh test-integration.py /workspace/
+#10 CACHED
+
+#11 [ 8/13] RUN python -m pip install --extra-index-url=https://pypi.nvidia.com     cupy-cuda13x     rmm-cu13     pylibraft-cu13     raft-dask-cu13 || echo "Installing available RAPIDS packages"
+#11 CACHED
+
+#12 [ 2/13] RUN apt-get update && apt-get install -y     build-essential     cmake     git     wget     curl     pkg-config     software-properties-common     swig     libopenblas-dev     liblapack-dev     ninja-build     ccache     sudo     vim     && add-apt-repository -y ppa:deadsnakes/ppa     && apt-get update && apt-get install -y     python3.13     python3.13-dev     python3.13-venv     && /usr/bin/python3.13 -m ensurepip --upgrade     && rm -rf /var/lib/apt/lists/*
+#12 CACHED
+
+#13 [ 5/13] RUN useradd -ms /bin/bash builder &&     adduser builder sudo &&     echo "builder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+#13 CACHED
+
+#14 [ 9/13] RUN python -m pip install --extra-index-url=https://pypi.nvidia.com     cuvs-cu13 ||     python -m pip install --pre --extra-index-url=https://pypi.nvidia.com     cuvs-cu13 ||     echo "cuVS will be built from source if not available"
+#14 CACHED
+
+#15 [ 3/13] RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.13 1     && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1
+#15 CACHED
+
+#16 [ 6/13] WORKDIR /workspace
+#16 CACHED
+
+#17 [13/13] WORKDIR /workspace/faiss
+#17 CACHED
+
+#18 exporting to image
+#18 exporting layers done
+#18 writing image sha256:793f3e2ca04d9f5f03064f29017a1df118f4ec7d4bb78a1a5cccf5d200842361 done
+#18 naming to docker.io/library/faiss-gpu-builder:cuda13-py313 done
+#18 DONE 0.0s
+✅ Container built successfully
+
+🔨 Starting faiss-gpu + cuVS build...
+This will take 15-30 minutes...
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 13.0.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+=== Building faiss-gpu ===
+[0;32m=== FAISS-GPU Build Script ===[0m
+Target: Python 3.13, CUDA 13.0, Ubuntu 24.04
+
+[1;33mConfiguration:[0m
+  FAISS_DIR: /workspace/faiss
+  BUILD_DIR: /workspace/faiss/build
+  INSTALL_PREFIX: /workspace/faiss-install
+  PYTHON: /usr/bin/python3.13
+  CUDA_ARCH: 89
+
+[1;33mChecking dependencies...[0m
+[0;32m✓ All dependencies found[0m
+
+rm: cannot remove '/workspace/faiss-install/wheels': Permission denied

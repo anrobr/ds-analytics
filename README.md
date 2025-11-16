@@ -46,14 +46,14 @@ This repository provides a minimal, consistent environment for DS/ML experiments
 The dev container comes pre-installed with a rich set of libraries for data science, machine learning, and deep learning, including:
 
 - **Core Data Science**: `numpy`, `pandas`, `scipy`, `scikit-learn`
-- **GPU Acceleration (RAPIDS)**: `cudf`, `cuml`, `cugraph`
+- **GPU Acceleration (RAPIDS)**: `cudf`, `cuml`, `cugraph`, `cuvs` (CUDA Vector Search)
 - **Machine Learning**: `xgboost`, `optuna`
 - **Deep Learning**: `torch`, `transformers`, `onnx`, `onnxruntime`
 - **Data Processing**: `pyspark`, `pyarrow`
 - **Visualization**: `matplotlib`, `seaborn`, `plotly`
 - **Development**: `jupyterlab`, `ruff`, `pytest`
 
-*Note: `cuxfilter` and `faiss-gpu` are not included due to installation constraints but can be added later if needed.*
+*Note: `faiss-gpu` requires building from source - see `.devcontainer/build-faiss/` for build instructions.*
 
 ## Getting Started (Recommended)
 
@@ -88,6 +88,28 @@ Run these commands from the integrated terminal in VS Code.
   ```bash
   make gpu-check
   ```
+
+## Building faiss-gpu with cuVS Integration
+
+For high-performance vector search with GPU acceleration, you can build `faiss-gpu` and `cuVS` from source:
+
+```bash
+cd .devcontainer/build-faiss
+./quick-build.sh
+```
+
+This creates a specialized build container that compiles both libraries with:
+- Python 3.13 bindings
+- CUDA 13.0 support
+- Full RAPIDS cuVS integration (CAGRA algorithm)
+- Optimized for NVIDIA GPUs
+
+See `.devcontainer/build-faiss/README.md` for detailed instructions.
+
+**Use cases:**
+- **faiss-gpu**: Similarity search with various index types (IVF, HNSW, PQ)
+- **cuVS**: State-of-the-art graph-based GPU search (CAGRA)
+- Both libraries work seamlessly together via numpy/cupy arrays
 
 ## Contributing
 
